@@ -1,36 +1,209 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pirate Ben - Content Creator Website
 
-## Getting Started
+A modern, responsive portfolio website for **Pirate Ben**, a multi-platform content creator specializing in gaming, music reactions, and streaming content.
 
-First, run the development server:
+## 🎯 Overview
+
+This is the official website for Pirate Ben, showcasing his content across multiple YouTube channels and Twitch streams. The site serves as a central hub for fans to discover all his content, learn about his journey, and easily navigate to his various platforms.
+
+### Content Channels Featured:
+
+- **🎮 Gaming Channel** (@pirateben2011) - Epic gaming content, playthroughs, and reviews
+- **🎵 Music Reactions** (@BenReacts214) - Clean music reactions with genuine takes
+- **📹 Everyday Adventures** (@EverydayAdventures) - Daily life vlogs and behind-the-scenes
+- **🔴 Live Streams** (Twitch: pirateben11) - Interactive live streams 3x weekly
+
+## 🚀 Tech Stack
+
+- **Next.js 15** - React framework with App Router and static export
+- **React 19** - Latest React features with client-side data fetching
+- **TypeScript** - Type safety and better developer experience
+- **Tailwind CSS** - Utility-first CSS framework with custom animations
+- **Radix UI** - Accessible component primitives (Accordion, Button, Card)
+- **Lucide React** - Beautiful, customizable icons
+- **Shadcn/ui** - Modern component library with custom theming
+
+## 🎨 Features
+
+### Core Features
+
+- **Responsive Design** - Optimized for all devices with custom mobile breakpoints
+- **Real-time Stats** - Live channel statistics via FlexHub API integration
+- **Latest Content** - Dynamically fetched videos from YouTube RSS feeds
+- **Modern UI** - Dark theme with gaming-inspired aesthetic
+- **Performance Optimized** - Static generation with client-side hydration
+- **SEO Friendly** - Proper meta tags and structured data
+- **Accessibility** - Built with Radix UI for screen reader support
+
+### Technical Features
+
+- **Static Export** - Full static site generation for CDN deployment
+- **CORS Proxy Fallback** - Multiple fallback strategies for YouTube RSS feeds
+- **Environment-specific APIs** - Different API endpoints for development/production
+- **Custom Animations** - Smooth transitions and hover effects
+- **Mobile-first Design** - Custom `useIsMobile` hook for responsive behavior
+- **Image Optimization** - Unoptimized images for static hosting compatibility
+
+## 🔧 External Dependencies
+
+### APIs Used
+
+- **FlexHub API** - Real-time channel statistics and social media data
+  - Production: `https://flexhub.ampnet.media/api/`
+  - Development: `http://localhost:3005/api/`
+- **YouTube RSS Feeds** - Latest video content from each channel
+  - Uses CORS proxies for browser compatibility
+  - Fallback strategy with multiple proxy services
+
+### Font Dependencies
+
+- **Montserrat** - Headers and display text
+- **Inter** - Body text and UI elements
+
+## 🛠️ Development
+
+### Prerequisites
+
+- Node.js 18+
+- npm, yarn, pnpm, or bun
+
+### Getting Started
+
+2. **Install dependencies**
+
+```bash
+npm install
+```
+
+3. **Run the development server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production (static export)
+- `npm run start` - Start production server
+- `npm run export` - Generate static export
+- `npm run static-build` - Build static site
+- `npm run deploy` - Build and add .nojekyll file for GitHub Pages
+- `npm run lint` - Run ESLint
 
-## Learn More
+## 📦 Static Site Generation
 
-To learn more about Next.js, take a look at the following resources:
+This project is configured as a **static site** that can be deployed to any static hosting provider. Key configurations:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Static Export** - `output: 'export'` in Next.js config
+- **Trailing Slash** - Better compatibility with static hosting
+- **Unoptimized Images** - Required for static export
+- **Client-side Data Fetching** - All dynamic content loads on the client
+- **No Server-side Rendering** - All content is pre-built or client-rendered
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Static Site Limitations
 
-## Deploy on Vercel
+- No API routes or server-side functions
+- No dynamic routing (all routes must be pre-defined)
+- No server-side rendering or ISR
+- External API calls only (FlexHub, YouTube RSS)
+- Images must be unoptimized for static hosting
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The site can be deployed to:
+
+- **Vercel** (recommended for Next.js)
+- **Netlify**
+- **GitHub Pages**
+- **AWS S3 + CloudFront**
+- **Any static hosting provider**
+
+### Build Output
+
+After running `npm run build`, the static files are generated in the `out/` directory:
+
+- `out/index.html` - Main page
+- `out/_next/` - Next.js assets
+- `out/404.html` - 404 error page
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
+
+## 🔧 Configuration
+
+### YouTube Channels
+
+Update channel information in `src/lib/constants.ts`:
+
+```typescript
+export const YOUTUBE_CHANNELS = [
+  {
+    handle: "pirateben2011",
+    id: "UCTzNhlbLaKGfri0l2UNRRAg",
+    displayName: "Pirate Ben",
+  },
+  {
+    handle: "BenReacts214",
+    id: "UCBuiKJsK7kIuS2v2VFvZKWw",
+    displayName: "Ben Reacts",
+  },
+  {
+    handle: "EverydayAdventures",
+    id: "UCf11llW0VU8Q8UPuLeKScpA",
+    displayName: "Everyday Adventures",
+  },
+];
+```
+
+### Custom Theme
+
+The site uses a custom dark theme with gaming-inspired colors:
+
+- **Primary Color** - `hsl(348 100% 44%)` (Red accent)
+- **Background** - `hsl(240 8% 11%)` (Dark blue-gray)
+- **Secondary Background** - `hsl(261 6% 16%)` (Lighter blue-gray)
+- **Custom Gradients** - Hero, accent, and card gradients
+- **Custom Shadows** - Glow effects and elegant shadows
+- **Custom Fonts** - Montserrat for headers, Inter for body text
+
+### Styling
+
+- Main styles in `src/app/globals.css`
+- Tailwind configuration in `tailwind.config.ts`
+- Custom CSS variables for theming
+- Shadcn/ui components in `src/components/ui/`
+
+## 🌐 Environment Configuration
+
+### Development vs Production
+
+The site automatically switches API endpoints based on `NODE_ENV`:
+
+- **Development** - Uses `http://localhost:3005/api/` for FlexHub API
+- **Production** - Uses `https://flexhub.ampnet.media/api/` for FlexHub API
+
+### CORS Configuration
+
+YouTube RSS feeds use a fallback strategy with multiple CORS proxies:
+
+- Primary: Direct fetch (may fail due to CORS)
+- Fallback 1: `https://api.allorigins.win/raw?url=`
+- Fallback 2: `https://corsproxy.io/?`
+
+## 📄 License
+
+This project is private and proprietary to Pirate Ben.
+
+## 💝 Credits
+
+Designed and developed with ❤️ by [ampnet media](https://ampnet.media)
+
+## 📞 Contact
+
+For questions or collaboration opportunities, reach out through:
+
+- YouTube: [@pirateben2011](https://www.youtube.com/@pirateben2011)
+- Twitch: [pirateben11](https://www.twitch.tv/pirateben11)

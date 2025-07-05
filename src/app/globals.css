@@ -1,26 +1,70 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors - Pirate Ben Theme */
+  --background: 240 8% 11%;
+  --background-secondary: 261 6% 16%;
+  --foreground: 0 0% 89%;
+
+  --card: 261 6% 16%;
+  --card-foreground: 0 0% 89%;
+
+  --popover: 261 6% 16%;
+  --popover-foreground: 0 0% 89%;
+
+  --primary: 348 100% 44%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 261 6% 22%;
+  --secondary-foreground: 0 0% 89%;
+
+  --muted: 261 6% 20%;
+  --muted-foreground: 0 0% 65%;
+
+  --accent: 348 100% 44%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 261 6% 25%;
+  --input: 261 6% 20%;
+  --ring: 348 100% 44%;
+
+  /* Border Radius */
+  --radius: 0.75rem;
+
+  /* Shadows */
+  --shadow-glow: 0 0 30px hsl(348 100% 44% / 0.2);
+  --shadow-card: 0 8px 30px hsl(0 0% 0% / 0.3);
+  --shadow-elegant: 0 10px 40px hsl(0 0% 0% / 0.4);
+
+  /* Background Images - Gradients */
+  --gradient-hero: linear-gradient(135deg, hsl(240 8% 11%), hsl(261 6% 16%));
+  --gradient-accent: linear-gradient(
+    135deg,
+    hsl(348 100% 44%),
+    hsl(348 100% 35%)
+  );
+  --gradient-card: linear-gradient(145deg, hsl(261 6% 16%), hsl(261 6% 18%));
+
+  /* Transition Timing Functions */
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Base Styles */
+@layer base {
+  * {
+    @apply border-border;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
