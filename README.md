@@ -49,8 +49,9 @@ This is the official website for Pirate Ben, showcasing his content across multi
 ### APIs Used
 
 - **FlexHub API** - Real-time channel statistics and social media data
-  - Production: `https://flexhub.ampnet.media/api/`
-  - Development: `http://localhost:3005/api/`
+  - Configurable via `NEXT_PUBLIC_FLEXHUB_URL` environment variable
+  - Default: `https://flexhub.ampnet.media/api/`
+  - Site ID configurable via `NEXT_PUBLIC_SITE_ID` environment variable
 - **YouTube RSS Feeds** - Latest video content from each channel
   - Uses CORS proxies for browser compatibility
   - Fallback strategy with multiple proxy services
@@ -69,19 +70,36 @@ This is the official website for Pirate Ben, showcasing his content across multi
 
 ### Getting Started
 
-2. **Install dependencies**
+1. **Clone the repository**
+
+```bash
+git clone <repository-url>
+cd pirateben
+```
+
+2. **Create environment file**
+
+Create a `.env.local` file in the root directory:
+
+```bash
+# .env.local
+NEXT_PUBLIC_FLEXHUB_URL=https://flexhub.ampnet.media/api
+NEXT_PUBLIC_SITE_ID=your-site-id-here
+```
+
+3. **Install dependencies**
 
 ```bash
 npm install
 ```
 
-3. **Run the development server**
+4. **Run the development server**
 
 ```bash
 npm run dev
 ```
 
-4. **Open your browser**
+5. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ### Available Scripts
@@ -178,12 +196,19 @@ The site uses a custom dark theme with gaming-inspired colors:
 
 ## 🌐 Environment Configuration
 
+### Environment Variables
+
+The site uses environment variables for configuration:
+
+- **`NEXT_PUBLIC_FLEXHUB_URL`** - FlexHub API endpoint (defaults to `https://flexhub.ampnet.media/api`)
+- **`NEXT_PUBLIC_SITE_ID`** - FlexHub site ID (required for stats API)
+
 ### Development vs Production
 
-The site automatically switches API endpoints based on `NODE_ENV`:
+Environment variables can be set differently for each environment:
 
-- **Development** - Uses `http://localhost:3005/api/` for FlexHub API
-- **Production** - Uses `https://flexhub.ampnet.media/api/` for FlexHub API
+- **Development** - Set in `.env.local` file
+- **Production** - Set in deployment platform (Vercel, Netlify, etc.)
 
 ### CORS Configuration
 

@@ -146,13 +146,18 @@ Configure `firebase.json`:
 
 ### External Dependencies
 
-- **Stats API**: `https://flexhub.ampnet.media/api/` - Ensure this is accessible
+- **Stats API**: Configurable via `NEXT_PUBLIC_FLEXHUB_URL` environment variable - Ensure this is accessible
 - **YouTube RSS**: Uses CORS proxies for video fetching
 - **Images**: All images are unoptimized (static hosting limitation)
 
 ### Environment Variables
 
-No environment variables are required for the static build, but you may want to set:
+The following environment variables are required for the static build:
+
+- **`NEXT_PUBLIC_FLEXHUB_URL`** - FlexHub API endpoint (defaults to `https://flexhub.ampnet.media/api`)
+- **`NEXT_PUBLIC_SITE_ID`** - FlexHub site ID (required for stats API)
+
+Optional environment variables:
 
 - `NODE_ENV=production` for production builds
 - Custom base paths for subdirectory deployments

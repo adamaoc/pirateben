@@ -41,14 +41,20 @@ const StatsGrid = () => {
         setLoading(true);
         console.log("📊 Fetching combined stats from all YouTube channels...");
 
-        // Use the production URL in production, localhost in development
-        const baseUrl =
-          process.env.NODE_ENV === "production"
-            ? "https://flexhub.ampnet.media/api"
-            : "http://localhost:3005/api";
+        // Use environment variables for FlexHub URL and Site ID
+        const flexhubUrl =
+          process.env.NEXT_PUBLIC_FLEXHUB_URL ||
+          "https://flexhub.ampnet.media/api";
+        const siteId = process.env.NEXT_PUBLIC_SITE_ID;
+
+        if (!siteId) {
+          throw new Error(
+            "NEXT_PUBLIC_SITE_ID environment variable is required"
+          );
+        }
 
         const response = await fetch(
-          `${baseUrl}/public/sites/f02471ed-0587-45cd-bbe7-41da31b4cedb/social-media`
+          `${flexhubUrl}/public/sites/${siteId}/social-media`
         );
 
         if (!response.ok) {
